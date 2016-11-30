@@ -1,0 +1,57 @@
+package com.crc.weixin;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.crc.weixin.commons.BaseController;
+import com.crc.weixin.entity.Account;
+import com.crc.weixin.entity.Menu;
+import com.crc.weixin.service.api.AccountService;
+import com.crc.weixin.service.api.MenuService;
+
+
+@Controller
+@RequestMapping("/weixin/account")
+class AccountController extends BaseController {
+
+	@Reference(interfaceClass=AccountService.class,check=false)
+	AccountService accountService;
+	
+	@Reference(interfaceClass=MenuService.class,check=false)
+	MenuService menuService;
+	
+	@RequestMapping
+	public ModelAndView index(){
+		
+//		Account account = new Account();
+//		account.setUserNo("1466406858693");
+//		account.setAccountNo("colin");
+//		account.setAccount("gh_9213e165e70f");
+//		account.setAppId("wxfc24f877b37a1e3a");
+//		account.setAppSecret("a522757f91917d557e5048ea1dd79cd5");
+//		account.setToken(System.currentTimeMillis() + "");
+//		account.setCreateDate("ssa");
+//		account.setUpdateDate("sss");
+//		accountService.save(account);
+		Menu menu = new Menu();
+		String accountNo = "colin";
+		 menu.setAccountNo(accountNo);
+		 menu.setMenuNo(System.currentTimeMillis()+ "");
+		 menu.setName("测试");
+		 menu.setType("click");
+		 menu.setUrl("http://www.soso.com/");
+		menu.setCreateDate("ssa");
+		menu.setUpdateDate("sss");
+		//menuService.save(menu);
+		List<Menu> menus = new ArrayList<Menu>();
+		menus = menuService.getMenuByAccountNoAndParent(accountNo, null);
+		System.out.println(	menuService.syncMenu(accountNo, menus));
+		return new ModelAndView("account-index");
+	}
+	
+}

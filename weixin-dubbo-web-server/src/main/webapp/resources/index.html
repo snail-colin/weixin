@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <!-- 上述4个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>index</title>
+    <!-- Bootstrap -->
+    <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/theme.css" rel="stylesheet">
+    <!--icon css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- tree css -->
+    <link rel="stylesheet" href="scripts/bootstrap-treeview/css/bootstrap-treeview.min.css">
+    <!--dataTables css -->
+    <link rel="stylesheet" href="scripts/dataTables/css/dataTables.bootstrap.min.css">
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+    <!-- tree js -->
+    <script src="scripts/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+
+    <!--dataTables js -->
+    <script src="scripts/dataTables/js/jquery.dataTables.min.js"></script>
+    <script src="scripts/dataTables/js/dataTables.bootstrap.min.js"></script>
+
+    <!--模板渲染 -->
+    <script src="scripts/plugin/handlebars-v3.0.1.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="scripts/bootstrap/js/html5shiv.min.js"></script>
+    <script src="scripts/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                    document.createTextNode(
+                            '@-ms-viewport{width:auto!important}'
+                    )
+            );
+            document.querySelector('head').appendChild(msViewportStyle);
+        }
+    </script>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 头部导航条 begin -->
+    <div class="main-header">
+        <!-- 头部左边导航begin -->
+        <div class="main-header-left text-center">
+            <span>Menu</span>
+        </div>
+
+        <!-- 头部右边导航begin -->
+        <div class="navbar navbar-static-top main-header-right">
+
+            <!-- 菜单折叠按钮 begin -->
+            <div class="main-header-right-toggle">
+                <a href="javascript:void(0);" class="sidebar-toggle nav-menu-btn" data-toggle="offcanvas" role="button">
+                    <i class="fa fa-bars fa-2x "></i>
+                </a>
+            </div>
+
+            <!-- 用户begin -->
+            <ul class="nav navbar-nav main-header-right-menu">
+                <li class="main-header-right-menu-item text-center">
+                    <a href="#">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="label">4</span>
+                    </a>
+                </li>
+                <li class="dropdown main-header-right-menu-item ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span><span>&nbsp;root</span>
+                    </a>
+                    <ul class="dropdown-menu panel panel-success" role="menu">
+                        <!--  用户简介begin  -->
+                        <li class="text-center panel-body">
+                            <p>
+                                dsdsdsssssssssssssssssssssssfddddddddd
+                            </p>
+                        </li>
+                        <!--  底部登出按钮 begin  -->
+                        <li class="text-center panel-footer">
+                            <div>
+                                <a href="login.html" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix visible-xs-block"></div>
+    </div>
+    <!-- 头部导航条 end -->
+
+    <!-- 左侧菜单栏 begin -->
+    <aside class="main-sidebar ">
+        <ul class=" nav nav-stacked ">
+            <li data-level="0">
+                <a href="#" data-toggle="collapse" data-target=".menu01">
+                    <span class="glyphicon glyphicon-home"></span><span>&nbsp;系统管理</span>
+                </a>
+
+                <!-- 二级菜单 begin -->
+                <ul class="menu01 collapse nav nav-stacked main-sidebar-submenu">
+                    <li data-level="1">
+                        <a href="#" data-toggle="collapse" data-target=".menu02">
+                            <span class="glyphicon glyphicon-list-alt"></span><span>&nbsp;二级菜单01</span>
+                        </a>
+
+                        <!-- 三级菜单 begin -->
+                        <ul class="menu02 collapse nav nav-stacked">
+                            <li data-level="2">
+                                <a href="#" data-toggle="collapse" data-target=".mune03">
+                                    <span class="glyphicon glyphicon-list"></span><span>&nbsp;三级菜单01</span>
+                                </a>
+
+                                <!-- 四级菜单 begin -->
+                                <ul class="mune03 collapse nav nav-stacked">
+                                    <li data-level="3">
+                                        <a href="#" data-toggle="collapse" class="main-sidebar-second">
+                                            <span>&nbsp;四级菜单01</span>
+                                        </a>
+                                        <ul class="collapse nav nav-stacked main-sidebar-second-menu">
+                                            <li data-level="4">
+                                                <a href="#" data-toggle="collapse" data-target=".mune05">
+                                                    <span>&nbsp;五级菜单01</span>
+                                                </a>
+                                                <ul class="mune05 collapse nav nav-stacked ">
+                                                    <li data-level="5">
+                                                        <a href="#" data-toggle="collapse">
+                                                            <span>&nbsp;六级菜单01</span>
+                                                        </a>
+                                                    </li>
+                                                    <li data-level="5">
+                                                        <a href="#" data-toggle="collapse">
+                                                            <span>&nbsp;六级菜单02</span>
+                                                        </a>
+                                                    </li>
+                                                    <li data-level="5">
+                                                        <a href="#" data-toggle="collapse">
+                                                            <span>&nbsp;六级菜单02</span>
+                                                        </a>
+                                                    </li>
+                                                    <li data-level="5">
+                                                        <a href="#" data-toggle="collapse">
+                                                            <span>&nbsp;六级菜单02</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-level="4">
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单02</span>
+                                                </a>
+                                            </li>
+                                            <li data-level="4">
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单02</span>
+                                                </a>
+                                            </li>
+                                            <li data-level="4">
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单02</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li data-level="3">
+                                        <a href="#" data-toggle="collapse" class="main-sidebar-second">
+                                            <span>&nbsp;四级菜单02</span>
+                                        </a>
+                                        <ul class="collapse nav nav-stacked ">
+                                            <li>
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单01_01</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单01_01</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单01_02</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="collapse">
+                                                    <span>&nbsp;五级菜单01_03</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-level="2"><a href="index.html"> <span
+                                    class="glyphicon glyphicon-list"></span><span>&nbsp;三级菜单02</span></a></li>
+                        </ul>
+                    </li>
+                    <li data-level="1"><a><span class="glyphicon glyphicon-list-alt"></span><span>&nbsp;二级菜单02</span> </a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target=".menu02_02">
+                    <span class="glyphicon glyphicon-inbox"></span><span>&nbsp;特殊系统</span>
+                </a>
+
+                <ul class="menu02_02 collapse nav nav-stacked main-sidebar-submenu">
+                    <li>
+                        <a href="index2.html">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-inbox"></span><span>&nbsp;特殊系统2</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- 左侧菜单栏 end -->
+
+    <!-- 右侧内容区 begin -->
+    <div class="content-wrapper">
+        <section class="container-fluid main-content">
+            <!-- 树结构头部begin -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="btn btn-group " role="group">
+                        <button type="button" class="btn btn-primary" id="select-all">全选</button>
+                        <button type="button" class="btn btn-primary" id="delete-select-all"> 全不选</button>
+                        <button type="button" class="btn btn-primary" id="unselected">反选</button>
+                        <button type="button" class="btn btn-primary" id="refresh">刷新</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                id="add-row">新建
+                        </button>
+                        <button type="button" class="btn btn-primary" id="delete-selected-row">删除所选</button>
+                        <button type="button" class="btn btn-primary"  title="Popover title"
+                                data-container="body" data-toggle="popover" data-placement="bottom"
+                                data-content="底部的 Popover 中的一些内容">弹出按钮</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#myModal2" >弹出关闭框</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#myModal3" >弹出信息框</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 带树菜单的内容模板 begin -->
+            <div class="row ">
+                <!--树结构 begin -->
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2 main-content-sidebar" style="overflow-x:hidden;">
+                    <div id="tree" class="box"></div>
+                </div>
+
+                <!-- 内容区begin -->
+                <div class="col-xs-9  col-sm-9 col-md-9 col-lg-10">
+                    <table id="dataTable" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th style="width:15px"><input type="checkbox" id='checkAll' /></th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>extn</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                            <th>operating</th>
+                        </tr>
+                        </thead>
+                        <!-- tbody是必须的 -->
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- 右侧内容区 end -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="position" placeholder="Position">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="salary" placeholder="Salary">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="start_date" placeholder="Start date"
+                           data-date-format="yyyy/mm/dd">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="office" placeholder="Office">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="extn" placeholder="extn">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                在这里添加一些文本
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel3">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                在这里添加一些文本
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--定义操作列按钮模板-->
+<script id="tpl" type="text/x-handlebars-template">
+    {{#each func}}
+    <button type="button" class="btn btn-{{this.type}} btn-sm" onclick="{{this.fn}}">{{this.name}}</button>
+    {{/each}}
+</script>
+
+<script>
+
+    var dataTable;
+    var editFlag = false;
+    //树结构数据
+    function getTree() {
+        var treeData = [
+            {
+                text: "Parent 1",
+                level: 1,
+                nodes: [
+                    {
+                        text: "Child 1",
+                        level: 2,
+                        nodes: [
+                            {
+                                text: "Grandchild 1",
+                                level: 3,
+                                nodes: [
+                                    {
+                                        text: "Grandchild 1_1",
+                                        level: 4,
+                                        nodes: [
+                                            {
+                                                text: "Grandchild 1_1",
+                                                level: 5,
+                                                nodes: [
+                                                    {
+                                                        text: "Grandchild 1_1",
+                                                        level: 6
+                                                    },
+                                                    {
+                                                        text: "Grandchild 1_2",
+                                                        level: 6
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                text: "Grandchild 1_2",
+                                                level: 5
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        text: "Grandchild 2",
+                                        level: 4
+                                    }
+                                ]
+                            },
+                            {
+                                text: "Grandchild 2"
+                            }
+                        ]
+                    },
+                    {
+                        text: "Child 2"
+                    }
+                ]
+            },
+            {
+                text: "Parent 2",
+                level: 1,
+                nodes: [
+                    {
+                        text: "Grandchild 1_1",
+                        level: 2,
+                        nodes: [
+                            {
+                                text: "Grandchild 1_1",
+                                level: 3,
+                                nodes: [
+                                    {
+                                        text: "Grandchild 1_1",
+                                        level: 4,
+                                        nodes: [
+                                            {
+                                                text: "Grandchild 1_1",
+                                                level: 5
+                                            },
+                                            {
+                                                text: "Grandchild 1_2",
+                                                level: 5
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        text: "Grandchild 1_2",
+                                        level: 4
+                                    }
+                                ]
+                            },
+                            {
+                                text: "Grandchild 1_2"
+                            }
+                        ]
+
+                    },
+                    {
+                        text: "Grandchild 1_2",
+                        level: 2
+                    }
+                ]
+            },
+            {
+                text: "Parent 3"
+            },
+            {
+                text: "Parent 4"
+            },
+            {
+                text: "Parent 5"
+            }
+        ];
+        return treeData;
+    }
+
+
+
+    //默认父容器的宽度
+    var defaultParentWidth = 200;
+
+    /**
+     *
+     * @param pDiv 父类div对象
+     * @param cDiv 子类div对象
+     * @param width 偏远的距离
+     */
+    var setScrollLeft = function (pDiv, cDiv, width) {
+        //当前子容器的宽度
+        var currentParentWidth = $(cDiv).width() + width;
+        if ($(cDiv).width() + width < defaultParentWidth)
+            currentParentWidth = defaultParentWidth;
+        $(cDiv).width(currentParentWidth + "px");
+        $(pDiv).scrollLeft(width * 2);
+    };
+
+    $(function () {
+        var tpl = $("#tpl").html();
+        //预编译模板
+        var template = Handlebars.compile(tpl);
+
+        //头部导航栏 菜单隐藏按钮
+        $(".main-header .main-header-right .nav-menu-btn").click(function () {
+            if ($(this).attr("data-type") == "on") {
+                $(".wrapper").removeClass("sidebar-collapse");
+                $(this).removeAttr("data-type");
+                setTimeout(function () {
+                    $(".main-sidebar > ul > li > a > span:last-of-type").show();
+                    //重新添加折叠效果
+                    $(".main-sidebar > ul > li > a:first-of-type").each(function () {
+                        $(this).attr("data-toggle", "collapse");
+                    })
+                }, 150);
+            } else {
+                //隐藏左侧菜单的子菜单
+                $('.main-sidebar .collapse').collapse('hide');
+                //取消折叠效果
+                $(".main-sidebar > ul > li > a:first-of-type").each(function () {
+                    $(this).removeAttr("data-toggle");
+                });
+                $(".main-sidebar > ul > li > ul:first-of-type").each(function () {
+                    $(this).css("height", "auto");
+                });
+                $(this).attr("data-type", "on");
+                $(".wrapper").addClass("sidebar-collapse");
+                $(".main-sidebar > ul > li > a > span:last-of-type").hide();
+            }
+        });
+
+        //初始化树结构
+        var options = {
+            data: getTree(),
+            showIcon: false,
+            showBorder:false,
+            levels: 1 //开始时树展开的层数
+        };
+        $('#tree').treeview(options);
+
+        //展开的层数
+        var expandedLevel = 3;
+        //展开
+        $("#tree").on('nodeExpanded ', function (event, data) {
+            //超过2表示三级树结构
+            if (data.level > 2 && data.level >= expandedLevel) {
+                //有层次的叠加
+                setScrollLeft($(".main-content-sidebar"), $('#tree'), 30);
+                expandedLevel = data.level;
+            } else
+                expandedLevel = 3;
+        });
+        //折叠
+        $('#tree').on('nodeCollapsed', function (event, data) {
+            if (data.level > 2) {
+                expandedLevel = data.level;
+                //折叠层次
+                var collapsedLevel = expandedLevel - data.level + 1;
+                setScrollLeft($(".main-content-sidebar"), $('#tree'), -30 * collapsedLevel);
+            }
+        });
+        defaultParentWidth = $(".main-content-sidebar").width();
+
+        //初始化列表数据
+        dataTable = $('#dataTable').DataTable({
+            ajax: {
+                url: "list.txt"
+            },
+            serverSide: true,
+            searching: false, //取消搜索框
+            pagingType: "full_numbers", //分页
+            columns: [
+                {
+                    "data": "id",
+                    "createdCell": function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<input type='checkbox' name='checkItem' value='" + sData + "' />");
+                    }
+                },
+                {"data": "name"},
+                {"data": "position"},
+                {"data": "salary"},
+                {"data": "start_date"},
+                {"data": "office"},
+                {"data": "extn"},
+                {"data": null}
+            ],
+            columnDefs: [
+                {
+                    targets: 7,
+                    render: function (a, b, c, d) {
+                        var context =
+                        {
+                            func: [
+                                {
+                                    "name": "修改",
+                                    "fn": "edit(\'" + c.name + "\',\'" + c.position + "\',\'" + c.salary + "\',\'" + c.start_date + "\',\'" + c.office + "\',\'" + c.extn + "\')",
+                                    "type": "primary"
+                                },
+                                {"name": "删除", "fn": "del(this,\'" + c.name + "\')", "type": "danger"}
+                            ]
+                        };
+                        var html = template(context);
+                        return html;
+                    }
+                }
+
+            ],
+            "language": {
+                "lengthMenu": "_MENU_ 条记录每页",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "infoFiltered": "",
+                "paginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "尾页"
+                }
+            }
+        });
+        $("#save").click(add);
+
+        //checkbox全选
+        $("#checkAll").on("click", function () {
+            var isChecked = $(this).prop("checked");
+            $("input[name='checkItem']").prop("checked", isChecked);
+        });
+
+        dataTable.rows().on("click", "input[name='checkItem']", function () {
+            //取消全选的选中效果
+            if (!$(this).is(":checked"))
+                $("#checkAll").prop("checked", false);
+        });
+
+        //全选
+        $("#select-all").click(function () {
+            $("#checkAll").prop("checked", true);
+            $("input[name='checkItem']").prop("checked", true);
+
+        });
+        //全不选
+        $("#delete-select-all").click(function () {
+            $("#checkAll").prop("checked", false);
+            $("input[name='checkItem']").prop("checked", false);
+        });
+
+        //反选
+        $("#unselected").click(function () {
+            if ($("#checkAll").is(":checked"))
+                $("#checkAll").trigger("click");
+            else if ($("#dataTable tbody input:checkbox:checked").size()) {
+                $("#dataTable tbody input:checkbox").each(function () {
+                    this.checked = !this.checked;
+                });
+            }
+        });
+
+        //删除所选
+        $("#delete-selected-row").click(function () {
+            $("#dataTable tbody input:checkbox:checked").each(function () {
+                $(this).parents('tr').remove();
+            });
+        });
+
+        $('.main-sidebar ul li').on('show.bs.collapse', function (e) {
+            var level = parseInt($(this).attr("data-level")) % 4 + 1;
+            $(this).find("ul:first").find(" > li ").find(" > a > span:first").each(function(){
+                $(this).css("padding-left",10 * level + "px");
+            });
+            e.stopPropagation();
+        })
+
+
+        $("[data-toggle='popover']").popover();
+
+    });
+
+
+    /**
+     * 清除
+     */
+    function clear() {
+        $("#name").val("").attr("disabled", false);
+        $("#position").val("");
+        $("#salary").val("");
+        $("#start_date").val("");
+        $("#office").val("");
+        $("#extn").val("");
+        editFlag = false;
+    }
+
+    /**
+     * 添加数据
+     **/
+    function add() {
+        var addJson = {
+            "name": $("#name").val(),
+            "position": $("#position").val(),
+            "salary": $("#salary").val(),
+            "start_date": $("#start_date").val(),
+            "office": $("#office").val(),
+            "extn": $("#extn").val()
+        };
+        ajax(addJson);
+    }
+
+    /**
+     *编辑方法
+     **/
+    function edit(name, position, salary, start_date, office, extn) {
+        console.log(name);
+        editFlag = true;
+        $("#myModalLabel").text("修改");
+        $("#name").val(name).attr("disabled", true);
+        $("#position").val(position);
+        $("#salary").val(salary);
+        $("#start_date").val(start_date);
+        $("#office").val(office);
+        $("#extn").val(extn);
+        $("#myModal").modal("show");
+    }
+
+    function ajax(obj) {
+        //此处应该进行数据库数据插入操作
+//        var url = "add.jsp";
+//        if (editFlag) {
+//            url = "/edit.jsp";
+//        }
+//        $.ajax({
+//            url: url,
+//            data: {
+//                "name": obj.name,
+//                "position": obj.position,
+//                "salary": obj.salary,
+//                "start_date": obj.start_date,
+//                "office": obj.office,
+//                "extn": obj.extn
+//            }, success: function (data) {
+//                table.ajax.reload();
+//                $("#myModal").modal("hide");
+//                $("#myModalLabel").text("新增");
+//                clear();
+//                console.log("结果" + data);
+//            }
+//        });
+
+
+    }
+
+
+    /**
+     * 删除数据
+     * @param name
+     */
+    function del(object, name) {
+        //此处要进行数据库数据删除操作
+//        $.ajax({
+//            url: "/del.jsp",
+//            data: {
+//                "name": name
+//            }, success: function (data) {
+//                table.ajax.reload();
+//                console.log("删除成功" + data);
+//            }
+//        });
+        $(object).parents('tr').remove();
+    }
+</script>
+</body>
+</html>

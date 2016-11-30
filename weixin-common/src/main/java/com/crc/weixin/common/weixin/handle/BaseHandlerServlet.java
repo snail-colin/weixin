@@ -1,0 +1,128 @@
+package com.crc.weixin.common.weixin.handle;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+
+import com.crc.weixin.common.util.JaxbUtil;
+import com.crc.weixin.common.weixin.handle.dto.ConvertRequestMessage;
+import com.crc.weixin.common.weixin.handle.dto.MsgType;
+import com.crc.weixin.common.weixin.handle.dto.ResponseMessage;
+import com.crc.weixin.common.weixin.handle.dto.request.RequestMessage;
+import com.crc.weixin.common.weixin.handle.service.RequestMessageHandler;
+
+public abstract class BaseHandlerServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (checkSignature(request))
+			response.getWriter().print(request.getParameter("echostr"));
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			messageHandler(request, response);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 处理器处理
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	protected void messageHandler(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ClassNotFoundException {
+		String xml = IOUtils.toString(request.getInputStream(), request.getCharacterEncoding());
+		String rst = "";
+		if (StringUtils.isNotBlank(xml)) {
+			// xml 转成中转对象
+			ConvertRequestMessage convertRequestMessage = JaxbUtil.convertToJavaBean(xml, ConvertRequestMessage.class);
+			if (convertRequestMessage != null) {
+				// xml转成请求对象 TODO event事件类型需在处理
+				RequestMessage requestMessage = (RequestMessage) JaxbUtil.convertToJavaBean(xml,
+						Class.forName(MsgType.getName(convertRequestMessage.getMsgType())));
+				if (requestMessage != null) {
+					// 获取处理器
+					Set<RequestMessageHandler> requestMessageHandlers = getRequestMessageHandlers();
+					for (RequestMessageHandler requestMessageHandler : requestMessageHandlers) {
+						// 处理并反馈响应信息
+						ResponseMessage responseMessage = requestMessageHandler
+								.handle(requestMessage);
+						if (responseMessage != null) {
+							// 转化响应信息
+							rst = JaxbUtil
+									.convertToXml(responseMessage);
+							if (StringUtils.isNotBlank(rst))
+								break;
+						}
+					}
+				}
+			}
+		}
+		response.getWriter().print(rst);
+	}
+
+	/**
+	 * 获取处理器
+	 * 
+	 * @return
+	 */
+	protected abstract LinkedHashSet<RequestMessageHandler> getRequestMessageHandlers();
+
+	/**
+	 * 验证签名
+	 * 
+	 * @param request
+	 * @return
+	 */
+	protected boolean checkSignature(HttpServletRequest request) {
+		boolean rst = false;
+		// token
+		String token = request.getParameter("token");
+		// 加密签名
+		String signature = request.getParameter("signature");
+		// 时间戳
+		String timestamp = request.getParameter("timestamp");
+		// 随机数
+		String nonce = request.getParameter("nonce");
+		if (StringUtils.isNotBlank(signature) && StringUtils.isNotBlank(timestamp) && StringUtils.isNotBlank(nonce)
+				&& StringUtils.isNotBlank(token)) {
+			String[] tmpArr = new String[] { token, timestamp, nonce };
+			Arrays.sort(tmpArr);
+			// 构建验证字符串
+			String signatureStr = "";
+			for (String validate : tmpArr)
+				signatureStr += validate;
+			// sha1加密
+			signatureStr = DigestUtils.shaHex(signatureStr);
+			// 执行验证
+			rst = signature.equalsIgnoreCase(signatureStr);
+		}
+		return rst;
+	}
+
+}

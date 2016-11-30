@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- tree css -->
+    <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="scripts/bootstrap-treeview/css/bootstrap-treeview.min.css">
+    <script src="scripts/jquery.min.js"></script>
+    <!-- tree js -->
+    <script src="scripts/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+    <style>
+        .box {
+            -webkit-align-content: flex-start;
+            align-content: flex-start;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" style="width: 200px;  overflow-x:hidden;">
+
+    <div id="tree" class="box"></div>
+</div>
+
+<script>
+    //树结构数据
+    function getTree() {
+        var data = [
+            {
+                text: "Parent 1",
+                level: 1,
+                nodes: [
+                    {
+                        text: "Child 1",
+                        level: 2,
+                        nodes: [
+                            {
+                                text: "Grandchild 1",
+                                level: 3,
+                                nodes: [
+                                    {
+                                        text: "Grandchild 1_1",
+                                        level: 4,
+                                        nodes: [
+                                            {
+                                                text: "Grandchild 1_1",
+                                                level: 5,
+                                                nodes: [
+                                                    {
+                                                        text: "Grandchild 1_1",
+                                                        level: 6
+                                                    },
+                                                    {
+                                                        text: "Grandchild 1_2",
+                                                        level: 6
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                text: "Grandchild 1_2",
+                                                level: 5
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        text: "Grandchild 2",
+                                        level: 4
+                                    }
+                                ]
+                            },
+                            {
+                                text: "Grandchild 2"
+                            }
+                        ]
+                    },
+                    {
+                        text: "Child 2"
+                    }
+                ]
+            },
+            {
+                text: "Parent 2",
+                level: 1,
+                nodes: [
+                    {
+                        text: "Grandchild 1_1",
+                        level: 2,
+                        nodes: [
+                            {
+                                text: "Grandchild 1_1",
+                                level: 3,
+                                nodes: [
+                                    {
+                                        text: "Grandchild 1_1",
+                                        level: 4,
+                                        nodes: [
+                                            {
+                                                text: "Grandchild 1_1",
+                                                level: 5
+                                            },
+                                            {
+                                                text: "Grandchild 1_2",
+                                                level: 5
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        text: "Grandchild 1_2",
+                                        level: 4
+                                    }
+                                ]
+                            },
+                            {
+                                text: "Grandchild 1_2"
+                            }
+                        ]
+
+                    },
+                    {
+                        text: "Grandchild 1_2",
+                        level: 2
+                    }
+                ]
+            },
+            {
+                text: "Parent 3"
+            },
+            {
+                text: "Parent 4"
+            },
+            {
+                text: "Parent 5"
+            }
+        ];
+        return data;
+    }
+
+
+
+    //默认父容器的宽度
+    var defaultParentWidth = 200;
+
+    /**
+     *
+     * @param pDiv 父类div对象
+     * @param cDiv 子类div对象
+     * @param width 偏远的距离
+     */
+    var setScrollLeft = function (pDiv, cDiv, width) {
+        //当前子容器的宽度
+        var currentParentWidth = $(cDiv).width() + width;
+        if ($(cDiv).width() + width < defaultParentWidth)
+            currentParentWidth = defaultParentWidth;
+        $(cDiv).width(currentParentWidth + "px");
+        $(pDiv).scrollLeft(width*2);
+    }
+
+
+    $(function () {
+        //初始化树结构
+        var options = {
+            data: getTree(),
+            showIcon: false,
+            levels: 1 //开始时树展开的层数
+        };
+        $('#tree').treeview(options);
+
+        //展开的层数
+        var expandedLevel = 3;
+        //展开
+        $('#tree').on('nodeExpanded ', function (event, data) {
+            //超过2表示三级树结构
+            if (data.level > 2 && data.level >= expandedLevel) {
+                //有层次的叠加
+                setScrollLeft($(".box"), $('#tree'),30);
+                expandedLevel = data.level;
+            }else
+                expandedLevel = 3;
+        });
+        //折叠
+        $('#tree').on('nodeCollapsed', function (event, data) {
+            if (data.level > 2) {
+                //折叠层次
+                var collapsedLevel = expandedLevel - data.level + 1;
+                expandedLevel = data.level;
+                setScrollLeft($(".box"), $('#tree'), -30 * collapsedLevel );
+            }
+        });
+    })
+</script>
+</body>
+</html>

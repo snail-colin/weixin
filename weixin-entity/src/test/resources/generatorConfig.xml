@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="F:\workspaces\eclipse\weixin\weixin-entity\src\test\resources\mysql-connector-java-5.1.10.jar"/>
+  <context id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/weixin" userId="root" password="root" />
+    <javaModelGenerator targetPackage="com.crc.weixin.entity" targetProject="weixin-entity" />
+    <sqlMapGenerator targetPackage="com.crc.weixin.dao" targetProject="weixin-entity" />
+    <javaClientGenerator targetPackage="com.crc.weixin.dao.mappers" targetProject="weixin-entity" type="XMLMAPPER" />
+<!--     <table schema="weixin" tableName="ACCOUNT" domainObjectName="Account" enableUpdateByExample="false"
+      enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
+      <columnOverride column="USER_NO" property="userNo" />
+      <columnOverride column="ACCOUNT_NO" property="accountNo" />
+      <columnOverride column="ACCOUNT" property="account" />
+      <columnOverride column="NAME" property="name" />
+      <columnOverride column="API_URL" property="apiUrl" />
+      <columnOverride column="TYPE" property="type" />
+      <columnOverride column="TOKEN" property="token" />
+      <columnOverride column="APP_ID" property="appId" />
+      <columnOverride column="APP_SECRET" property="appSecret" />
+      <columnOverride column="CREATE_DATE" property="createDate" />
+      <columnOverride column="UPDATE_DATE" property="updateDate" />
+    </table>
+
+    <table schema="weixin" tableName="USER" domainObjectName="User" enableUpdateByExample="false"
+      enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
+      <columnOverride column="USER_NO" property="userNo" />
+      <columnOverride column="USER_NAME" property="userName" />
+      <columnOverride column="PASSWORD" property="password" />
+      <columnOverride column="STATUS" property="status" />
+      <columnOverride column="CREATE_DATE" property="createDate" />
+      <columnOverride column="UPDATE_DATE" property="updateDate" />
+    </table>
+    
+     -->
+    <table schema="weixin" tableName="MENU" domainObjectName="Menu" enableUpdateByExample="false"
+      enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
+      <columnOverride column="ACCOUNT_NO" property="accountNo" />
+      <columnOverride column="MENU_NO" property="menuNo" />
+      <columnOverride column="PARENT" property="parent" />
+      <columnOverride column="NAME" property="name" />
+      <columnOverride column="TYPE" property="type" />
+      <columnOverride column="MENU_KEY" property="menuKey" />
+      <columnOverride column="URL" property="url" />
+      <columnOverride column="MEDIA_ID" property="mediaId" />
+      <columnOverride column="CREATE_DATE" property="createDate" />
+      <columnOverride column="UPDATE_DATE" property="updateDate" />
+    </table>
+  </context>
+</generatorConfiguration>

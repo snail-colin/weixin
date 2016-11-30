@@ -1,0 +1,6 @@
+package com.crc.weixin.common.util.dto;
+
+public class PageBean {
+
+	
+}

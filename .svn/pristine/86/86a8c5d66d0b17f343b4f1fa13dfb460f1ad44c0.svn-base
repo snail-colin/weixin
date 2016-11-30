@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>index</title>
+    <!-- Bootstrap -->
+    <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/theme.css" rel="stylesheet">
+    <!--icon css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- tree css -->
+    <link rel="stylesheet" href="scripts/bootstrap-treeview/css/bootstrap-treeview.min.css">
+
+    <!--dataTables css -->
+    <link rel="stylesheet" href="scripts/dataTables/css/dataTables.bootstrap.min.css">
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+    <!-- tree js -->
+    <script src="scripts/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+
+    <!--dataTables js -->
+    <script src="scripts/dataTables/js/jquery.dataTables.min.js"></script>
+    <script src="scripts/dataTables/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="scripts/bootstrap/js/html5shiv.min.js"></script>
+    <script src="scripts/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 头部导航条 begin -->
+    <div class="main-header">
+        <!-- 头部左边导航begin -->
+        <div class="main-header-left text-center">
+            <span>Menu</span>
+        </div>
+
+        <!-- 头部右边导航begin -->
+        <div class="navbar navbar-static-top main-header-right">
+
+            <!-- 菜单折叠按钮 begin -->
+            <div class="main-header-right-toggle">
+                <a href="javascript:void(0);" class="sidebar-toggle nav-menu-btn" data-toggle="offcanvas" role="button">
+                    <i class="fa fa-bars fa-2x "></i>
+                </a>
+            </div>
+
+            <!-- 用户begin -->
+            <ul class="nav navbar-nav main-header-right-menu">
+                <li class="main-header-right-menu-item text-center">
+                    <a href="#">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="label">4</span>
+                    </a>
+                </li>
+                <li class="dropdown main-header-right-menu-item ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span><span>&nbsp;root</span>
+                    </a>
+                    <ul class="dropdown-menu panel panel-success" role="menu">
+                        <!--  用户简介begin  -->
+                        <li class="text-center panel-body">
+                            <p>
+                                dsdsdsssssssssssssssssssssssfddddddddd
+                            </p>
+                        </li>
+                        <!--  底部登出按钮 begin  -->
+                        <li class="text-center panel-footer">
+                            <div>
+                                <a href="login.html" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix visible-xs-block"></div>
+    </div>
+    <!-- 头部导航条 end -->
+
+    <!-- 左侧菜单栏 begin -->
+    <aside class="main-sidebar ">
+        <ul class=" nav nav-stacked ">
+            <li>
+                <a href="#" data-toggle="collapse" data-target=".menu01">
+                    <span class="glyphicon glyphicon-home"></span><span>&nbsp;系统管理</span>
+                </a>
+
+                <!-- 二级菜单 begin -->
+                <ul class="menu01 collapse nav nav-stacked main-sidebar-submenu">
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target=".menu02">
+                            <span class="glyphicon glyphicon-list-alt"></span><span>&nbsp;二级菜单01</span>
+                        </a>
+
+                        <!-- 三级菜单 begin -->
+                        <ul class="menu02 collapse nav nav-stacked">
+                            <li>
+                                <a data-toggle="collapse" data-target=".mune03">
+                                    <span class="glyphicon glyphicon-list"></span><span>&nbsp;三级菜单01</span>
+                                </a>
+
+                                <!-- 四级菜单 begin -->
+                                <ul class="mune03 collapse nav nav-stacked">
+                                    <li>
+                                        <a href="#" data-toggle="collapse">
+                                            <span>&nbsp;四级菜单01</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="collapse">
+                                            <span>&nbsp;四级菜单02</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="index.html"> <span class="glyphicon glyphicon-list"></span><span>&nbsp;三级菜单02</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="glyphicon glyphicon-list-alt"></span><span>&nbsp;二级菜单02</span> </a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target=".menu02_02">
+                    <span class="glyphicon glyphicon-inbox"></span><span>&nbsp;特殊系统</span>
+                </a>
+
+                <ul class="menu02_02 collapse nav nav-stacked main-sidebar-submenu">
+                    <li>
+                        <a href="index2.html" data-toggle="collapse">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse">
+                            <span>&nbsp;特殊系统02</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-inbox"></span><span>&nbsp;特殊系统2</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- 左侧菜单栏 end -->
+
+    <!-- 右侧内容区 begin -->
+    <div class="content-wrapper">
+        <section class="container-fluid main-content">
+            <!-- 树结构头部begin -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="btn btn-group " role="group">
+                        <button type="button" class="btn btn-primary" id="select-all">全选</button>
+                        <button type="button" class="btn btn-primary" id="delete-select-all"> 全不选</button>
+                        <button type="button" class="btn btn-primary" id="unselected">反选</button>
+                        <button type="button" class="btn btn-primary" id="refresh">刷新</button>
+                        <button type="button" class="btn btn-primary" id="add-row">新建</button>
+                        <button type="button" class="btn btn-primary" id="delete-selected-row">删除所选</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 纯内容模板 begin -->
+            <div class="row main-content-footer">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table id="example" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                        </thead>
+
+                        <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                        </tfoot>
+
+                        <tbody>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Garrett Winters</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>63</td>
+                            <td>2011/07/25</td>
+                            <td>$170,750</td>
+                        </tr>
+                        <tr>
+                            <td>Ashton Cox</td>
+                            <td>Junior Technical Author</td>
+                            <td>San Francisco</td>
+                            <td>66</td>
+                            <td>2009/01/12</td>
+                            <td>$86,000</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- 右侧内容区 end -->
+</div>
+<script>
+
+    $(function () {
+        //头部导航栏 菜单隐藏按钮
+        $(".main-header .main-header-right .nav-menu-btn").click(function () {
+            if ($(this).attr("data-type") == "on") {
+                $(".wrapper").removeClass("sidebar-collapse");
+                $(this).removeAttr("data-type");
+                setTimeout(function(){
+                    $(".main-sidebar > ul > li > a > span:last-of-type").show();
+                    //重新添加折叠效果
+                    $(".main-sidebar > ul > li > a:first-of-type").each(function(){
+                        $(this).attr("data-toggle","collapse");
+                    })
+                },"150");
+            } else {
+                //隐藏左侧菜单的子菜单
+                $('.main-sidebar .collapse').collapse('hide');
+                //取消折叠效果
+                $(".main-sidebar > ul > li > a:first-of-type").each(function(){
+                    $(this).removeAttr("data-toggle");
+                })
+                $(".main-sidebar > ul > li > ul:first-of-type").each(function(){
+                    $(this).css("height","auto");
+                })
+                $(this).attr("data-type", "on");
+                $(".wrapper").addClass("sidebar-collapse");
+                $(".main-sidebar > ul > li > a > span:last-of-type").hide();
+            }
+        });
+
+        //临时数据
+        var t = $('#example').DataTable({
+
+        });
+        t.on('order.dt search.dt',
+                function () {
+                    t.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+    });
+</script>
+</body>
+</html>

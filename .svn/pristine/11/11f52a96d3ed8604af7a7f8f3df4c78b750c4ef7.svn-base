@@ -1,0 +1,64 @@
+package com.crc.weixin.common.weixin.handle;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
+
+public class WechatCallbackApiHandleServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (checkSignature(request))
+			response.getWriter().print(request.getParameter("echostr"));
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doPost(request, response);
+	}
+
+	/**
+	 * 验证签名
+	 * @param request
+	 * @return
+	 */
+	protected boolean checkSignature(HttpServletRequest request) {
+		boolean rst = false;
+		//token
+		String token = request.getParameter("token");
+		// 加密签名
+		String signature = request.getParameter("signature");
+		// 时间戳
+		String timestamp = request.getParameter("timestamp");
+		// 随机数
+		String nonce = request.getParameter("nonce");
+		if (StringUtils.isNotBlank(signature) && StringUtils.isNotBlank(timestamp) && StringUtils.isNotBlank(nonce)
+				&& StringUtils.isNotBlank(token)) {
+			String[] tmpArr = new String[] { token, timestamp, nonce };
+			Arrays.sort(tmpArr);
+			// 构建验证字符串
+			String signatureStr = "";
+			for (String validate : tmpArr)
+				signatureStr += validate;
+			// sha1加密
+			signatureStr = DigestUtils.shaHex(signatureStr);
+			// 执行验证
+			rst = signature.equalsIgnoreCase(signatureStr);
+		}
+		return rst;
+	}
+
+}

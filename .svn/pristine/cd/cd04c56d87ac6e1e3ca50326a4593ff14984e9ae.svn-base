@@ -1,0 +1,149 @@
+package com.crc.weixin.common.util;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+
+import redis.clients.jedis.Jedis;
+
+public class CacheUtil {
+
+	private final static String CACHE = "Cache";
+
+	/**
+	 * 路径分隔符
+	 */
+	private final static String PATH_SEPARATOR = "/";
+
+	/**
+	 * 获取某个类型下的所有缓存
+	 * 
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> Map<String, T> getCaches(Class<T> clazz) {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName();
+		Map<String, String> values = jedis.hgetAll(key);
+		Map<String, T> result = new HashMap<String, T>();
+		if (values != null && values.size() > 0) {
+			for (Map.Entry<String, String> entry : values.entrySet()) 
+				result.put(entry.getKey(), ConvertorUtil.jsonToObject(clazz,  entry.getValue()));
+		}
+		return result;
+	}
+
+	/**
+	 * @desc 获取缓存
+	 * @param clazz
+	 * @param field
+	 * @return
+	 */
+	public static <T> T getCache(Class<T> clazz, String field) {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName();
+		Map<String, String> values = jedis.hgetAll(key);
+		jedis.close();
+		if (values != null && values.size() > 0 && values.containsKey(field)) {
+			String value = values.get(field);
+			return ConvertorUtil.jsonToObject(clazz, value);
+		}
+		return null;
+	}
+
+	/**
+	 * @desc 删除缓存
+	 * @param clazz
+	 * @param field
+	 */
+	public static <T> void delCache(Class<T> clazz, String field) {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName();
+		jedis.hdel(key, field);
+		jedis.close();
+	}
+
+	/**
+	 * @desc 更新缓存
+	 * @param field
+	 * @param obj
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonGenerationException
+	 */
+	public static void updateCache(String field,Integer time, Object obj)
+			throws JsonGenerationException, JsonMappingException, IOException {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + obj.getClass().getName();
+		String value = ConvertorUtil.objectToJson(obj).toString();
+		if(time != null)
+			jedis.expire(field, time);
+		jedis.hset(key, field, value);
+		jedis.close();
+	}
+	
+	/********************************* 以下方法用于获取map类型 ********************************/
+
+	/**
+	 * 获取缓存
+	 * 
+	 * @param clazz
+	 * @param field
+	 * @return
+	 */
+	private static <T> Map<String, T> getMapCache(Class<T> clazz, String field) {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName() + "." + field;
+		Map<String, String> values = jedis.hgetAll(key);
+		jedis.close();
+		Map<String, T> rst = new HashMap<String, T>();
+		for (Entry<String, String> object : values.entrySet())
+			rst.put(object.getKey(), ConvertorUtil.jsonToObject(clazz, object.getValue()));
+		return rst;
+	}
+
+	/**
+	 * 删除缓存 delAll 为true 删除该key下所有缓存 false时删除map下面指定的key
+	 * 
+	 * @param clazz
+	 * @param field
+	 * @param delAll
+	 */
+	private static <T> void delMapCache(Class<T> clazz, String field, String[] keys) {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName() + "." + field;
+		if (keys != null && keys.length > 0)
+			jedis.hdel(key, keys);
+		else
+			jedis.del(key);
+		jedis.close();
+	}
+
+	/**
+	 * 更新缓存
+	 * 
+	 * @param <T>
+	 * @param field
+	 * @param map
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonGenerationException
+	 */
+	private static <T> void updateCache(String field, Integer time, Class<T> clazz, Map<String, T> map)
+			throws JsonGenerationException, JsonMappingException, IOException {
+		Jedis jedis = RedisPool.getJedis();
+		String key = CACHE + PATH_SEPARATOR + clazz.getName() + "." + field;
+		Map<String, String> rst = new HashMap<String, String>();
+		for (Entry<String, T> object : map.entrySet())
+			rst.put(object.getKey(), ConvertorUtil.objectToJson(object.getValue()).toString());
+		// 设置过期时间,每次重新重新赋值则刷新该时间  格式为为 ：  60 * 60 * 12
+		if(time != null)
+			jedis.expire(key, time);
+		jedis.hmset(key, rst);
+		jedis.close();
+	}
+}

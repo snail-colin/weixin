@@ -1,0 +1,41 @@
+package com.crc.weixin.service;
+
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.crc.weixin.common.util.dto.ResultMap;
+import com.crc.weixin.dao.mappers.AccountMapper;
+import com.crc.weixin.entity.Account;
+import com.crc.weixin.service.api.AccountService;
+
+@Service(register=false, timeout=10000,interfaceClass=AccountService.class)
+public class AccountServiceImpl extends BaseService implements AccountService  {
+	
+	@Override
+	public Map<String, Object> save(Account account) {
+		int rst = accountMapper.insertSelective(account);
+		if(rst > 0 )
+			return new ResultMap(0,"保存成功").toMap();
+		return new ResultMap(-1,"保存失败").toMap();
+	}
+
+	@Override
+	public Map<String, Object> update(Account account) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> delete(String accountNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Account getByAccountNo(String accountNo) {
+		return accountMapper.selectByPrimaryKey(accountNo);
+	}
+
+}

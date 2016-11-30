@@ -1,0 +1,21 @@
+package com.crc.weixin.common.weixin.handle.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class RegisterHandler {
+
+	private List<RequestMessageHandler> list = new ArrayList<RequestMessageHandler>();
+
+	public void add(RequestMessageHandler observer) {
+		if(list.contains(observer))
+			System.out.println(" is exits... ");
+		else
+			list.add(observer);
+		System.out.println("add... ");
+	}
+
+	public void del(RequestMessageHandler observer) {
+		list.remove(observer);
+	}
+}
